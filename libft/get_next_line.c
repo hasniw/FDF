@@ -5,115 +5,104 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wahasni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/25 11:41:22 by wahasni           #+#    #+#             */
-/*   Updated: 2018/11/30 13:38:49 by wahasni          ###   ########.fr       */
+/*   Created: 2018/11/22 14:42:30 by wahasni           #+#    #+#             */
+/*   Updated: 2018/12/14 14:51:23 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static t_gnl		*new_line(const int fd, char *buff, t_gnl **flst)
+static void			ft_list_add_last(t_gnl **save, t_gnl *elem)
 {
-	t_gnl	*new;
+	t_gnl *list;
 
-	if (!(new = (t_gnl *)malloc(sizeof(t_gnl))))
-		return (NULL);
-	new->fd = fd;
-	new->buff = ft_strdup(buff);
-	if (!(new->buff))
-		return (NULL);
-	new->next = *flst;
-	*flst = new;
-	return (new);
+	list = *save;
+	while (list->next != NULL)
+		list = list->next;
+	list->next = elem;
 }
 
-static t_gnl		*check_fd(const int fd, t_gnl *flst)
+static t_gnl		*ft_create_list(int fd)
 {
-	while (flst)
+	t_gnl *list;
+
+	if (!(list = (t_gnl*)malloc(sizeof(*list))))
+		return (NULL);
+	list->fd = fd;
+	list->temp = ft_strnew(0);
+	list->text = NULL;
+	list->next = NULL;
+	return (list);
+}
+
+static t_gnl		*ft_check_fd(t_gnl *save, int fd)
+{
+	t_gnl *tmp;
+	t_gnl *d_list;
+
+	tmp = NULL;
+	d_list = save;
+	while (d_list)
 	{
-		if (flst->fd == fd)
-			return (flst);
-		flst = flst->next;
+		if (d_list->fd == fd)
+			return (d_list);
+		if (!(d_list->next))
+		{
+			tmp = ft_create_list(fd);
+			ft_list_add_last(&d_list, tmp);
+			return (tmp);
+		}
+		d_list = d_list->next;
 	}
 	return (NULL);
 }
 
-static int			check_elem(int const fd, char *buff, t_gnl **flst)
+static int			ft_check(char *save, char **line)
 {
-	t_gnl	*elem;
-	char	*tmp;
+	char	*fin;
 
-	elem = check_fd(fd, *flst);
-	if (!elem)
+	if (!save)
+		return (0);
+	fin = ft_strchr(save, '\n');
+	if (fin != NULL)
 	{
-		if (!(elem = new_line(fd, buff, flst)))
-			return (-1);
-	}
-	else
-	{
-		if (!(tmp = ft_strjoin(elem->buff, buff)))
-			return (-1);
-		free(elem->buff);
-		elem->buff = tmp;
-	}
-	if (ft_strchr(elem->buff, '\n') != 0)
+		*fin = '\0';
+		*line = ft_strdup(save);
+		ft_strncpy(save, &fin[1], ft_strlen(&fin[1]) + 1);
 		return (1);
+	}
+	else if (ft_strlen(save) > 0)
+	{
+		*line = ft_strdup(save);
+		*save = '\0';
+		return (1);
+	}
 	return (0);
 }
 
-static char			*line_tracker(int const fd, t_gnl *flst, int i)
+int					get_next_line(const int fd, char **line)
 {
-	t_gnl	*elem;
-	char	*tmp;
-	char	*res;
-
-	res = NULL;
-	if (!(elem = check_fd(fd, flst)) || !elem->buff)
-		return (NULL);
-	if ((ft_strchr(elem->buff, '\n') != 0))
-	{
-		while (elem->buff[i] != '\n' && elem->buff[i] != '\0')
-			i++;
-		res = ft_strsub(elem->buff, 0, i);
-		tmp = ft_strdup(&elem->buff[i + 1]);
-		free(elem->buff);
-		elem->buff = tmp;
-	}
-	else
-	{
-		if (ft_strlen(elem->buff) != 0 && !(res = ft_strdup(elem->buff)))
-			return (NULL);
-		free(elem->buff);
-		elem->buff = NULL;
-	}
-	return (res);
-}
-
-int				get_next_line(int const fd, char **line)
-{
-	static t_gnl	*flst;
-	char			buff[BUFF_SIZE + 1];
+	char			buf[BUFF_SIZE + 1];
+	static t_gnl	*save = NULL;
+	t_gnl			*tmp;
 	int				ret;
-	int				end;
-	int				i;
 
-	i = 0;
-	if (fd < 0 || line == NULL)
+	if (!(save))
+		save = ft_create_list(fd);
+	if (fd == -1 || line == NULL || BUFF_SIZE <= 0)
 		return (-1);
-	while ((ret = read(fd, buff, BUFF_SIZE)) != 0)
+	tmp = ft_check_fd(save, fd);
+	while (!(ft_strchr(tmp->temp, '\n')))
 	{
-		if (ret < 0)
+		ret = read(fd, buf, BUFF_SIZE);
+		if (ret == -1)
 			return (-1);
-		buff[ret] = '\0';
-		if ((end = check_elem(fd, buff, &flst)) == 1)
-		{
-			*line = line_tracker(fd, flst, i);
-			return (1);
-		}
-		if (end == -1)
-			return (-1);
+		if (ret == 0)
+			return (ft_check(tmp->text, line));
+		buf[ret] = '\0';
+		tmp->text = ft_strjoin(tmp->temp, buf);
+		free(tmp->temp);
+		tmp->temp = tmp->text;
 	}
-	if ((*line = line_tracker(fd, flst, i)) != NULL)
-		return (1);
-	return (0);
+	return (ft_check(tmp->text, line));
 }

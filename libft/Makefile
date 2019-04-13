@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: wahasni <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/16 18:59:51 by wahasni           #+#    #+#              #
-#    Updated: 2018/12/28 15:05:59 by wahasni          ###   ########.fr        #
+#    Updated: 2019/04/13 17:03:47 by wahasni          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRC = ft_abs.c\
 	  ft_isascii.c\
 	  ft_isdigit.c\
 	  ft_isprint.c\
+	  ft_isnumber.c\
 	  ft_isspace.c\
 	  ft_itoa.c\
 	  ft_lstadd.c\
@@ -99,5 +100,3 @@ fclean: clean
 	rm -rf $(NAME)
 
 re: fclean all
-
-.PHONY: all, ran, create, clean, fclean, re

@@ -6,7 +6,7 @@
 /*   By: wahasni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/13 19:23:49 by wahasni           #+#    #+#             */
-/*   Updated: 2019/01/30 19:14:04 by wahasni          ###   ########.fr       */
+/*   Updated: 2018/11/21 19:29:12 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,17 @@
 
 char		*ft_itoa(int n)
 {
-	size_t		i;
-	size_t		n_size;
-	static char	str[12];
-	char		*min_int;
+	size_t	i;
+	size_t	n_size;
+	char	*str;
 
 	i = 0;
-	ft_bzero(str, 12);
-	n_size = ft_nbrlen(n, 10);
 	if (n == -2147483648)
-		return (min_int = "-2147483648");
+		return (ft_strdup("-2147483648"));
+	n_size = ft_nbrlen(n, 10);
+	if (!(str = (char *)malloc(sizeof(char) * (n_size + 1))))
+		return (NULL);
+	str[n_size] = 0;
 	if (n < 0)
 	{
 		str[0] = '-';

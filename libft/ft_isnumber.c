@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_isnumber.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wahasni <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/08 15:23:01 by wahasni           #+#    #+#             */
-/*   Updated: 2018/11/13 15:02:26 by wahasni          ###   ########.fr       */
+/*   Created: 2019/04/13 16:55:07 by wahasni           #+#    #+#             */
+/*   Updated: 2019/04/13 17:03:24 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+int ft_isnumber(char *s)
 {
-	int		i;
-	char	*a;
+    size_t  i;
 
-	i = 0;
-	a = (char *)s;
-	while (n)
-	{
-		a[i] = '\0';
-		n--;
-		i++;
-	}
+    i = 0;
+    while (s[i])
+    {
+        if (s[0] == '-')
+            i++;
+        if (!ft_isdigit(s[i]))
+            break;
+        i++;
+    }
+    return (i == ft_strlen(s));
 }

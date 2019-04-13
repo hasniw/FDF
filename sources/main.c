@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 22:16:38 by wahasni           #+#    #+#             */
-/*   Updated: 2019/04/12 16:27:09 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/04/13 17:08:52 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,3 +30,5 @@ int	main(int ac, char **av)
 		return (0);
 	}
 	position = ft_parsing(args);
+	return (0);
+}
