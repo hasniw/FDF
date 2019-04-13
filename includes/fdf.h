@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/30 13:54:54 by wahasni           #+#    #+#             */
-/*   Updated: 2019/04/13 17:42:28 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/04/13 22:29:33 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 #define HEIGHT 500
 
 #include "../libft/libft.h"
+#include <fcntl.h>
+#include <string.h>
+#include <string.h>
 
 typedef struct	s_point
 {
