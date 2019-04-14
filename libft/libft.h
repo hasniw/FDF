@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 14:09:25 by wahasni           #+#    #+#             */
-/*   Updated: 2019/04/13 17:03:20 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/04/14 15:51:44 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int					ft_isalpha(int c);
 int					ft_isascii(int c);
 int					ft_isdigit(int c);
 int					ft_isprint(int c);
-int					ft_isnumber(char *s);
 void				*ft_memccpy(void *dest, const void *src, int c, size_t n);
 void				*ft_memchr(const void *s, int c, size_t n);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
@@ -68,6 +67,7 @@ char				*ft_strstr(const char *str, const char *to_find);
 void				ft_swap(int *a, int *b);
 int					ft_tolower(int c);
 int					ft_toupper(int c);
+int					ft_isnumber(char *s);
 int					ft_strequ(char const *s1, char const *s2);
 int					ft_strnequ(char const *s1, char const *s2, size_t n);
 int					ft_isspace(int c);
@@ -93,5 +93,7 @@ void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 t_list				*ft_lstnew(void const *content, size_t content_size);
 void				ft_lstprint(t_list *lst);
+char				*strrev(char *str);
+int					get_next_line(const int fd, char **line);
 
 #endif

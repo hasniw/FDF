@@ -6,7 +6,7 @@
 #    By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/16 18:59:51 by wahasni           #+#    #+#              #
-#    Updated: 2019/04/13 17:03:47 by wahasni          ###   ########.fr        #
+#    Updated: 2019/04/14 15:59:18 by wahasni          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,6 @@ SRC = ft_abs.c\
 	  ft_isascii.c\
 	  ft_isdigit.c\
 	  ft_isprint.c\
-	  ft_isnumber.c\
 	  ft_isspace.c\
 	  ft_itoa.c\
 	  ft_lstadd.c\
@@ -79,6 +78,8 @@ SRC = ft_abs.c\
 	  ft_toupper.c\
 	  ft_wordcount.c\
 	  ft_wordlen.c\
+	  ft_isnumber.c\
+	  get_next_line.c\
 
 OBJ = $(SRC:.c=.o)
 
@@ -100,3 +101,5 @@ fclean: clean
 	rm -rf $(NAME)
 
 re: fclean all
+
+.PHONY: all, ran, create, clean, fclean, re
