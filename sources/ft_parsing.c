@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/04 22:04:49 by wahasni           #+#    #+#             */
-/*   Updated: 2019/04/14 17:12:57 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/04/14 19:09:46 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,17 @@ int		ft_assign(char *line, t_args *args, int nbline)
 	static int	j = 0;
 	char		**tab;
 
-    i = 0;
+    i = -1;
     tab = ft_strsplit(line, ' ');
-    while (tab[i])
+    while (tab[++i])
     {
         args->all_point[j].x = i;
         args->all_point[j].y = nbline;
         args->all_point[j].z = ft_atoi(tab[i]);
-        i++;
+		printf("x : %d\n", args->all_point[j].x);
+		printf("y : %d\n", args->all_point[j].y);
+		printf("z : %d\n", args->all_point[j].z);
+		printf("<--------------------------->\n");
         j++;
     }
     i = 0;
@@ -73,7 +76,7 @@ t_point	*ft_parsing(t_args *args)
 	printf("0\n");
 	nbline = 0;
 	args->nb_point = count_point(args);
-	if (!(args->all_point = malloc(sizeof(t_point *) * args->nb_point)))
+	if (!(args->all_point = malloc(sizeof(t_point *) * (args->nb_point + 10000000))))
 		return (args->all_point); //Erreur malloc
 	if ((fd = open(args->file, O_RDONLY)) < 0)
 		return (args->all_point); //Erreur fd
@@ -99,6 +102,14 @@ int main(int ac, char **av)
 	printf("-1\n");
 	position = ft_parsing(&args);
 	printf("%d\n", args.nb_point);
-
+	// while (i < args.nb_point)
+	// {
+	// 	printf("{--i : %d--}\n", i);
+	// 	printf("x : %d\n", args.all_point[i].x);
+	// 	printf("y : %d\n", args.all_point[i].y);
+	// 	printf("z : %d\n", args.all_point[i].z);
+	// 	printf("<--------------------------->\n");
+	// 	i++;
+	// }
 	return (0);
 }
