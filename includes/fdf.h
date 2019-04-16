@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/30 13:54:54 by wahasni           #+#    #+#             */
-/*   Updated: 2019/04/16 20:26:35 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/04/16 23:17:37 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,6 @@ typedef struct	s_args
 	t_point		*all_point;
 	void		*mlx_ptr;
     void		*win_ptr;
-	void		*img_ptr;
-	void		*image;
-	int			bpp;
-	int			endian;
-	int			line_size;
-	int			image_width;
-	int			image_height;
 }				t_args;
 
 typedef struct	s_line
