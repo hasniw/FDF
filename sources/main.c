@@ -6,16 +6,17 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 22:16:38 by wahasni           #+#    #+#             */
-/*   Updated: 2019/04/14 16:01:34 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/04/16 22:09:09 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../includes/fdf.h"
 
 int	main(int ac, char **av)
 {
 	int fd;
-	t_point position;
+	t_point *position;
+	t_image *image;
 	t_args args;
 
 	args.file = av[1];
@@ -29,6 +30,8 @@ int	main(int ac, char **av)
 		ft_putendl("enter a valid file");
 		return (0);
 	}
-	position = ft_parsing(args);
+	position = ft_parsing(&args);
+	// n = ft_display_pixel(&args, position);
+	// printf("%d\n", args.nb_point);
 	return (0);
 }

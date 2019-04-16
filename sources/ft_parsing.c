@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/04 22:04:49 by wahasni           #+#    #+#             */
-/*   Updated: 2019/04/14 19:09:46 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/04/16 12:16:53 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ int		ft_assign(char *line, t_args *args, int nbline)
         args->all_point[j].x = i;
         args->all_point[j].y = nbline;
         args->all_point[j].z = ft_atoi(tab[i]);
-		printf("x : %d\n", args->all_point[j].x);
-		printf("y : %d\n", args->all_point[j].y);
-		printf("z : %d\n", args->all_point[j].z);
-		printf("<--------------------------->\n");
+		// printf("x : %d\n", args->all_point[j].x);
+		// printf("y : %d\n", args->all_point[j].y);
+		// printf("z : %d\n", args->all_point[j].z);
+		// printf("<--------------------------->\n");
         j++;
     }
     i = 0;
@@ -73,7 +73,6 @@ t_point	*ft_parsing(t_args *args)
 	char	*line;
 	int		nbline;
 
-	printf("0\n");
 	nbline = 0;
 	args->nb_point = count_point(args);
 	if (!(args->all_point = malloc(sizeof(t_point *) * (args->nb_point + 10000000))))
@@ -86,30 +85,29 @@ t_point	*ft_parsing(t_args *args)
 		nbline++;
 		ft_strdel(&line);
 	}
-	printf("4\n");
 	return (args->all_point);
 }
 
-int main(int ac, char **av)
-{
-	t_args args;
-	t_point *position;
-	// int i = 0;
+// int main(int ac, char **av)
+// {
+// 	t_args args;
+// 	t_point *position;
+// 	// int i = 0;
 
-	(void) ac;
-	printf("-2\n");
-	args.file = av[1];
-	printf("-1\n");
-	position = ft_parsing(&args);
-	printf("%d\n", args.nb_point);
-	// while (i < args.nb_point)
-	// {
-	// 	printf("{--i : %d--}\n", i);
-	// 	printf("x : %d\n", args.all_point[i].x);
-	// 	printf("y : %d\n", args.all_point[i].y);
-	// 	printf("z : %d\n", args.all_point[i].z);
-	// 	printf("<--------------------------->\n");
-	// 	i++;
-	// }
-	return (0);
-}
+// 	(void) ac;
+// 	printf("-2\n");
+// 	args.file = av[1];
+// 	printf("-1\n");
+// 	position = ft_parsing(&args);
+// 	printf("%d\n", args.nb_point);
+// 	// while (i < args.nb_point)
+// 	// {
+// 	// 	printf("{--i : %d--}\n", i);
+// 	// 	printf("x : %d\n", args.all_point[i].x);
+// 	// 	printf("y : %d\n", args.all_point[i].y);
+// 	// 	printf("z : %d\n", args.all_point[i].z);
+// 	// 	printf("<--------------------------->\n");
+// 	// 	i++;
+// 	// }
+// 	return (0);
+// }
