@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/30 13:54:54 by wahasni           #+#    #+#             */
-/*   Updated: 2019/04/16 23:17:37 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/04/17 17:15:11 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,7 @@ typedef struct s_image
 }				t_image;
 
 t_point	*ft_parsing(t_args *args);
+int     create_window(t_args *args);
+int     create_image(t_image *image, t_args *args);
 
 #endif

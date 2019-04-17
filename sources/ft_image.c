@@ -6,23 +6,33 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 23:25:27 by wahasni           #+#    #+#             */
-/*   Updated: 2019/04/16 23:25:31 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/04/17 19:45:49 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf"
+#include "../includes/fdf.h"
 
-int create_image(t_image *image)
+// void    fill_pixel(char *my_image_string, int x, int y, int color)
+// {
+
+// }
+
+int     create_image(t_image *image, t_args *args)
 {
-    if (!(image->ptr = mlx_new_image(args.mlx_ptr, args.win_x, args.win_y))
+    // printf("%p\n", args->mlx_ptr);
+    if (!(image->ptr = mlx_new_image(args->mlx_ptr, 50, 60)))
+    {
+        printf("yo");
         return (-1);
-    if (!(image->img = mlx_get_data_addr(image->ptr,
-        &(image->bpp), &(image->size_line), &(image->endian))))
-        return (-1);
+    }
+    printf("image\n");
+   if (!(image->img = mlx_get_data_addr(image->ptr,
+       &(image->bpp), &(image->line_size), &(image->endian))))
+       return (-1);
     return (0);
 }
 
-int create_window(t_args *args)
+int     create_window(t_args *args)
 {
     args->mlx_ptr = mlx_init();
     if (!(args->win_ptr = mlx_new_window(args->mlx_ptr,

@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 22:16:38 by wahasni           #+#    #+#             */
-/*   Updated: 2019/04/16 23:23:24 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/04/17 19:40:16 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,12 @@ int	main(int ac, char **av)
 	position = ft_parsing(&args);
 	if (create_window(&args))
 		return (-1);
-	if (create_image(image))
+	if (create_image(image, &args))
 		return (-1);
+	printf("10\n");
 	// n = ft_display_pixel(&args, position);
-	// printf("%d\n", args.nb_point);
+	// mlx_put_image_to_window(args.mlx_ptr, args.win_ptr, image->img, 500, 500);
+	printf("%d\n", args.nb_point);
+	mlx_loop(args.mlx_ptr);
 	return (0);
 }
