@@ -6,15 +6,19 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/30 13:54:54 by wahasni           #+#    #+#             */
-/*   Updated: 2019/04/17 17:15:11 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/04/18 17:48:49 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 #define FDF_H
 
-#define WIDTH 500
-#define HEIGHT 500
+# define WIDTH 500
+# define HEIGHT 500
+# define USAGE_ERROR -1
+# define MALLOC_ERROR -2
+# define READ_ERROR -3
+# define MAP_ERROR -4
 
 #include "../libft/libft.h"
 #include <fcntl.h>
@@ -69,5 +73,9 @@ typedef struct s_image
 t_point	*ft_parsing(t_args *args);
 int     create_window(t_args *args);
 int     create_image(t_image *image, t_args *args);
+int     deal_mouse(int mouse, int x, int y, t_args *args);
+int     deal_key(int key, t_args *args);
+void    map_color(void *mlx_ptr, void *win_ptr, int color);
+int     ft_print_error(int error);
 
 #endif

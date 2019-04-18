@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 22:16:38 by wahasni           #+#    #+#             */
-/*   Updated: 2019/04/17 19:40:16 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/04/18 17:38:45 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	main(int ac, char **av)
 	t_image *image;
 	t_args args;
 
+	image = ft_memalloc(sizeof(image));
 	args.file = av[1];
 	if (ac != 2)
 	{
@@ -37,8 +38,12 @@ int	main(int ac, char **av)
 		return (-1);
 	printf("10\n");
 	// n = ft_display_pixel(&args, position);
-	// mlx_put_image_to_window(args.mlx_ptr, args.win_ptr, image->img, 500, 500);
+	mlx_get_color_value(args.mlx_ptr, 0xffffff);
+	
+	mlx_put_image_to_window(args.mlx_ptr, args.win_ptr, image->img, 500, 500);
 	printf("%d\n", args.nb_point);
+	mlx_mouse_hook(args.win_ptr, deal_mouse, &args);
+	mlx_key_hook(args.win_ptr, deal_key, &args);
 	mlx_loop(args.mlx_ptr);
 	return (0);
 }

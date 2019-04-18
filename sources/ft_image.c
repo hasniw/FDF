@@ -19,7 +19,7 @@
 
 int     create_image(t_image *image, t_args *args)
 {
-    // printf("%p\n", args->mlx_ptr);
+    // prinstf("%p\n", args->mlx_ptr);
     if (!(image->ptr = mlx_new_image(args->mlx_ptr, 50, 60)))
     {
         printf("yo");
