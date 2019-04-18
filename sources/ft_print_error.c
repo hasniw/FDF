@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 17:45:58 by wahasni           #+#    #+#             */
-/*   Updated: 2019/04/18 18:46:10 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/04/18 21:45:11 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ int     ft_print_error(int error)
     if (error == READ_ERROR)
         ft_putstr_fd("READ ERROR", 2);
     if (error == MAP_ERROR)
-        ft_putstr_fd("BAD MAP", 2);
+        ft_putstr_fd("Enter a valid file", 2);
     return (error);
 }
