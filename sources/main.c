@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 22:16:38 by wahasni           #+#    #+#             */
-/*   Updated: 2019/04/18 23:54:53 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/04/19 19:18:29 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	main(int ac, char **av)
 	printf("%d\n", args.nb_point);
 	mlx_mouse_hook(args.win_ptr, deal_mouse, &args);
 	mlx_key_hook(args.win_ptr, deal_key, &args);
+	printf("1\n");
 	mlx_loop(args.mlx_ptr);
 	return (0);
 }
