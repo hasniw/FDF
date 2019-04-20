@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/30 13:54:54 by wahasni           #+#    #+#             */
-/*   Updated: 2019/04/18 17:48:49 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/04/20 02:55:08 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ typedef struct	s_line
 	int			y2;
 	int			line_x;
 	int			line_y;
-	int			line_z;
 	int			dx;
 	int			dy;
 	int			xinc;
@@ -77,5 +76,9 @@ int     deal_mouse(int mouse, int x, int y, t_args *args);
 int     deal_key(int key, t_args *args);
 void    map_color(void *mlx_ptr, void *win_ptr, int color);
 int     ft_print_error(int error);
+void    create_line(t_args *args, t_point *position, t_image *image);
+void	ft_altitude_i(t_point i, t_point f, t_line *line, t_args args);
+void	ft_altitude_p(t_point i, t_point f, t_line *line, t_args args);
+void	put_line(t_line *line, t_args *args);
 
 #endif
