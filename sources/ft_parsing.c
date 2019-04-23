@@ -6,12 +6,32 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/04 22:04:49 by wahasni           #+#    #+#             */
-/*   Updated: 2019/04/16 12:16:53 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/04/23 02:11:18 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 #include <stdio.h>
+
+void	ft_value_max(char *file, int *x, int *y)
+{
+	int      fd;
+    char    *line;
+    int      nb_line;
+
+    nb_line = 0;
+    if ((fd = open(file, O_RDONLY)) == -1)
+        return ;
+    while (get_next_line(fd, &line) == 1)
+    {
+        nb_line++;
+        free(line);
+    }
+    *y = nb_line;
+    *x = *y * 2;
+    if (close(fd) == -1)
+        return ;
+}
 
 int		count_point(t_args *args)
 {
@@ -85,6 +105,9 @@ t_point	*ft_parsing(t_args *args)
 		nbline++;
 		ft_strdel(&line);
 	}
+	ft_value_max(args->file, &args->x_max, &args->y_max);
+	printf("X_MAX : %d\n", args->x_max);
+	printf("Y_MAX : %d\n", args->y_max);
 	return (args->all_point);
 }
 

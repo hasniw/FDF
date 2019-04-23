@@ -6,15 +6,15 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/30 13:54:54 by wahasni           #+#    #+#             */
-/*   Updated: 2019/04/20 02:55:08 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/04/23 02:08:32 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 #define FDF_H
 
-# define WIDTH 500
-# define HEIGHT 500
+# define WIDTH 800
+# define HEIGHT 800
 # define USAGE_ERROR -1
 # define MALLOC_ERROR -2
 # define READ_ERROR -3
@@ -26,6 +26,7 @@
 #include <string.h>
 #include "mlx.h"
 #include <stdio.h>
+#include <math.h>
 
 typedef struct	s_point
 {
@@ -38,6 +39,8 @@ typedef struct	s_args
 {
 	char		*file;
 	int			nb_point;
+	int			x_max;
+	int			y_max;
 	t_point		*all_point;
 	void		*mlx_ptr;
     void		*win_ptr;
@@ -79,6 +82,7 @@ int     ft_print_error(int error);
 void    create_line(t_args *args, t_point *position, t_image *image);
 void	ft_altitude_i(t_point i, t_point f, t_line *line, t_args args);
 void	ft_altitude_p(t_point i, t_point f, t_line *line, t_args args);
-void	put_line(t_line *line, t_args *args);
+void	put_line(t_line *line, t_args *args, t_image *image);
+void    fill_pixel(t_image *image, int x, int y, int color);
 
 #endif
