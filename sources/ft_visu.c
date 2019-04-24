@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 23:25:27 by wahasni           #+#    #+#             */
-/*   Updated: 2019/04/24 00:17:41 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/04/25 00:31:35 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void    fill_pixel(t_image *image, int x, int y, int color)
 {
-        if (x < 0 || x >= image->width || y < 0 || y >= image->height)
-                return ;
-        *(int *)(image->img + ((x + y * image->width) * image->bpp / 8)) = color;
+    if (x < 0 || x >= image->width || y < 0 || y >= image->height)
+        return ;
+    *(int *)(image->img + ((x + y * image->width) * image->bpp / 8)) = color;
 }
 
 // void set_line(t_line *line)
@@ -37,25 +37,43 @@ void    fill_pixel(t_image *image, int x, int y, int color)
 void    create_line(t_args *args, t_point *position, t_image *image)
 {
     int i;
+    int j;
     t_line line;
 
     // set_line(&line);
     i = -1;
-
+    j = 0;
     while (++i < args->nb_point)
     {
-        ft_altitude_i(position[i], position[i + 1], &line, *args);
-        fill_pixel(image, line.line_x, line.line_y, 255255);
-        put_line(&line, args, image);
+        if ((i + 1) < args->nb_point && position[i + 1].y == position[i].y)
+        {
+            ft_altitude_p(position[i], position[i + 1], &line, *args);
+            put_line(&line, args, image);
+        }
+        while ((i + j) < args->nb_point && position[i + j].y == position[i].y)
+            j++;
+        if (position[i].x == position[i + j].x)
+        {
+            ft_altitude_p(position[i], position[i + j], &line, *args);
+            put_line(&line, args, image);
+        }
     }
+    // while (++i < args->nb_point)
+    // {
+    //     ft_altitude_p(position[i], position[i + 1], &line, *args);
+    //     mlx_pixel_put(args->mlx_ptr , args->win_ptr, line.line_x, line.line_y, 255255255);
+    //     // put_line(&line, args);
+    //     // printf("%d\n", i);
+    //     printf("line_x : %d\n", line.line_x);
+    //     printf("line_y : %d\n", line.line_y);
+    // }
     mlx_put_image_to_window(args->mlx_ptr, args->win_ptr, image->ptr, 0, 0);
-    printf("!!!\n");
-    // (void) image;
+    (void) image;
 }
 
 int     create_image(t_image *image, t_args *args)
 {
-    // prinstf("%p\n", args->mlx_ptr);
+    // printf("%p\n", args->mlx_ptr);
     if (!(image->ptr = mlx_new_image(args->mlx_ptr, 50, 60)))
     {
         printf("yo");
@@ -65,8 +83,6 @@ int     create_image(t_image *image, t_args *args)
    if (!(image->img = mlx_get_data_addr(image->ptr,
        &(image->bpp), &(image->line_size), &(image->endian))))
        return (-1);
-    image->width = args->x_max + 50;
-    image->height = args->y_max + 50;
     return (0);
 }
 
@@ -74,7 +90,7 @@ int     create_window(t_args *args)
 {
     args->mlx_ptr = mlx_init();
     if (!(args->win_ptr = mlx_new_window(args->mlx_ptr,
-     WIDTH, HEIGHT, "Window -> Frichti")))
+     700, 900, "Window -> Frichti")))
         return (-1);
     return (0);
 }

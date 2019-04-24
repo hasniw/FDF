@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/30 13:58:21 by wahasni           #+#    #+#             */
-/*   Updated: 2019/04/24 00:52:05 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/04/25 00:29:32 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,10 @@ void	put_line(t_line *line, t_args *args, t_image *image)
 	yinc = ( line->dy > 0 ) ? 1 : -1;
 	line->dx = ft_abs(line->dx);
 	line->dy = ft_abs(line->dy);
-	// mlx_pixel_put(args->mlx_ptr , args->win_ptr, line->line_x, line->line_y, 255);
-	fill_pixel(image, line->line_x, line->line_y, 255255255);
+	mlx_pixel_put(args->mlx_ptr , args->win_ptr, line->line_x, line->line_y, 255255255);
+	// fill_pixel(image, line->line_x, line->line_y, 255255255);
 	if (line->dx > line->dy)
 	{
-		// printf("FIRST\n");
 		cumul = line->dx / 2;
 		i = 1;
 		while (j <= line->dx)
@@ -63,14 +62,13 @@ void	put_line(t_line *line, t_args *args, t_image *image)
 				cumul -= line->dx;
 				line->line_y += yinc;
 			}
-			// mlx_pixel_put(args->mlx_ptr , args->win_ptr, line->line_x, line->line_y, 255);
-			fill_pixel(image, line->line_x, line->line_y, 255255255);
+			mlx_pixel_put(args->mlx_ptr , args->win_ptr, line->line_x, line->line_y, 255255255);
+			// fill_pixel(image, line->line_x, line->line_y, 255255255);
 			j++;
 		}
 	}
 	else
 	{
-		// printf("SECOND\n");
 		cumul = line->dy / 2;
 		i = 1;
 		while (j <= line->dy)
@@ -82,8 +80,8 @@ void	put_line(t_line *line, t_args *args, t_image *image)
 				cumul -= line->dy;
 				line->line_x += xinc;
 			}
-			// mlx_pixel_put(args->mlx_ptr , args->win_ptr, line->line_x, line->line_y, 255);
-			fill_pixel(image, line->line_x, line->line_y, 255255255);
+			mlx_pixel_put(args->mlx_ptr , args->win_ptr, line->line_x, line->line_y, 255255255);
+			// fill_pixel(image, line->line_x, line->line_y, 255255255);
 			j++;
 		}
 	}
