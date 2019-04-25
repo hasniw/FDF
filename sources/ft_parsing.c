@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/04 22:04:49 by wahasni           #+#    #+#             */
-/*   Updated: 2019/04/16 12:16:53 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/04/25 01:29:09 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ int		ft_assign(char *line, t_args *args, int nbline)
     tab = ft_strsplit(line, ' ');
     while (tab[++i])
     {
-        args->all_point[j].x = i;
-        args->all_point[j].y = nbline;
+        args->all_point[j].x = i + 400;
+        args->all_point[j].y = nbline + 200;
         args->all_point[j].z = ft_atoi(tab[i]);
 		// printf("x : %d\n", args->all_point[j].x);
 		// printf("y : %d\n", args->all_point[j].y);

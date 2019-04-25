@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 23:25:27 by wahasni           #+#    #+#             */
-/*   Updated: 2019/04/25 00:31:35 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/04/25 21:42:25 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void    create_line(t_args *args, t_point *position, t_image *image)
         {
             ft_altitude_p(position[i], position[i + 1], &line, *args);
             put_line(&line, args, image);
+            // mlx_pixel_put(args->mlx_ptr , args->win_ptr, line.line_x, line.line_y, 255255255);
         }
         while ((i + j) < args->nb_point && position[i + j].y == position[i].y)
             j++;
@@ -56,6 +57,7 @@ void    create_line(t_args *args, t_point *position, t_image *image)
         {
             ft_altitude_p(position[i], position[i + j], &line, *args);
             put_line(&line, args, image);
+            // mlx_pixel_put(args->mlx_ptr , args->win_ptr, line.line_x, line.line_y, 255255255);
         }
     }
     // while (++i < args->nb_point)

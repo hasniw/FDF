@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/30 13:58:21 by wahasni           #+#    #+#             */
-/*   Updated: 2019/04/25 00:29:32 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/04/25 21:41:26 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,14 @@ void	put_line(t_line *line, t_args *args, t_image *image)
 	yinc = ( line->dy > 0 ) ? 1 : -1;
 	line->dx = ft_abs(line->dx);
 	line->dy = ft_abs(line->dy);
+	printf("1\n");
 	mlx_pixel_put(args->mlx_ptr , args->win_ptr, line->line_x, line->line_y, 255255255);
 	// fill_pixel(image, line->line_x, line->line_y, 255255255);
+	// j = 0;
 	if (line->dx > line->dy)
 	{
+		printf("j : %d\n", j);
+		printf("x : %d\n", line->dx);
 		cumul = line->dx / 2;
 		i = 1;
 		while (j <= line->dx)
@@ -62,6 +66,7 @@ void	put_line(t_line *line, t_args *args, t_image *image)
 				cumul -= line->dx;
 				line->line_y += yinc;
 			}
+			printf("2\n");
 			mlx_pixel_put(args->mlx_ptr , args->win_ptr, line->line_x, line->line_y, 255255255);
 			// fill_pixel(image, line->line_x, line->line_y, 255255255);
 			j++;
@@ -80,6 +85,7 @@ void	put_line(t_line *line, t_args *args, t_image *image)
 				cumul -= line->dy;
 				line->line_x += xinc;
 			}
+			printf("3\n");
 			mlx_pixel_put(args->mlx_ptr , args->win_ptr, line->line_x, line->line_y, 255255255);
 			// fill_pixel(image, line->line_x, line->line_y, 255255255);
 			j++;
